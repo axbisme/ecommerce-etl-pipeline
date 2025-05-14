@@ -9,6 +9,7 @@ This project extracts, cleans, and transforms raw e-commerce clickstream data in
 - Output of clean CSV chunks ready for loading
 
 ## Project Structure
+
 ```bash
 ecommerce-etl-pipeline/
 ├── data/
@@ -21,7 +22,7 @@ ecommerce-etl-pipeline/
 ├── pipeline.py # Orchestrates ETL steps
 ├── requirements.txt
 └── README.md
-
+```
 
 ## Getting Started
 
@@ -30,15 +31,20 @@ ecommerce-etl-pipeline/
 ```bash
 git clone https://github.com/axbisme/ecommerce-etl-pipeline.git
 cd ecommerce-etl-pipeline
+```
 
 ### 2. Install dependencies 
 
+```bash
 pip install -r requirements.txt
+```
 
 ### 3. Add raw CSV
 
-Download and place the file in data/raw
+Download and place the file in the directory data/raw
 
 ### 4. Run the pipeline
 
+```bash
 python3 pipeline.py
+```
