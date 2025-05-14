@@ -16,11 +16,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # --------- Pipeline Settings ----------
-RAW_DATA_PATH = Path("data/raw/2019-Oct.csv")
+RAW_FILE_NAME = "2019-Oct"
+RAW_DATA_PATH = Path("data/raw/" + RAW_FILE_NAME + ".csv")
 CLEAN_DATA_DIR = Path("data/clean")
 CHUNKSIZE = 100_000
 
-def run_etl_pipeline_in_chunks():
+def run_etl_pipeline():
     logger.info("Starting chunked ETL pipeline")
 
     CLEAN_DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -33,7 +34,7 @@ def run_etl_pipeline_in_chunks():
             clean_df = clean_data(chunk)
             total_rows += len(clean_df)
 
-            output_path = CLEAN_DATA_DIR / f"clean_chunk_{chunk_index}.csv"
+            output_path = CLEAN_DATA_DIR / f"clean_{RAW_FILE_NAME}_{chunk_index}.csv"
             clean_df.to_csv(output_path, index=False)
             logger.info(f"Saved cleaned chunk {chunk_index} with {len(clean_df)} rows")
 
@@ -46,4 +47,4 @@ def run_etl_pipeline_in_chunks():
     logger.info("Finished processing %d chunks. Total cleaned rows: %d", chunk_index, total_rows)
 
 if __name__ == "__main__":
-    run_etl_pipeline_in_chunks()
+    run_etl_pipeline()
