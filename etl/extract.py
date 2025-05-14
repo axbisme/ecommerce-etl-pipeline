@@ -8,5 +8,5 @@ def extract_csv(filepath: str, nrows: int = None) -> pd.DataFrame:
     return pd.read_csv(filepath, nrows=nrows)
 
 if __name__ == "__main__":
-    df = extract_csv('../data/raw/2019-Oct.csv', nrows=250)
+    df = extract_csv('../data/raw/2019-Oct.csv')
     print(df.head())
