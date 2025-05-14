@@ -9,6 +9,7 @@ This project extracts, cleans, and transforms raw e-commerce clickstream data in
 - Output of clean CSV chunks ready for loading
 
 ## Project Structure
+```bash
 ecommerce-etl-pipeline/
 ├── data/
 │ ├── raw/ # Raw input CSVs (ignored in Git)
