@@ -18,7 +18,9 @@ ecommerce-etl-pipeline/
 ├── etl/
 │ ├── extract.py # Handles CSV extraction
 │ ├── transform.py # Cleans and transforms raw data
-│ └── load.py # (Coming soon) Loads clean data into PostgreSQL
+│ └── load.py # Loads clean data into PostgreSQL
+├── sql/ # Store useful SQL scripts 
+├── docker-compose.yml
 ├── pipeline.py # Orchestrates ETL steps
 ├── requirements.txt
 └── README.md
@@ -56,7 +58,7 @@ python3 pipeline.py
 
 The cleaned data has been loaded into a PostgreSQL database container using SQLAlchemy.
 
-### Sample Table Preview
+### Verify data loaded to DB
 
 After running the pipeline, the `ecommerce_events` table was successfully created and populated:
 
