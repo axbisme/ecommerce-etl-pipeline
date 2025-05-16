@@ -30,6 +30,7 @@ ecommerce-etl-pipeline/
 
 ```bash
 git clone https://github.com/axbisme/ecommerce-etl-pipeline.git
+
 cd ecommerce-etl-pipeline
 ```
 
@@ -41,10 +42,13 @@ pip install -r requirements.txt
 
 ### 3. Add raw CSV
 
-Download and place the file in the directory data/raw
+The dataset used is Commerce Behavior Data from Multi-Category Store, available on Kaggle.
+
+Download the dataset available [here](https://www.kaggle.com/datasets/mkechinov/ecommerce-behavior-data-from-multi-category-store) and place the file in the directory data/raw.
 
 ### 4. Run the pipeline
 
 ```bash
 python3 pipeline.py
 ```
+
