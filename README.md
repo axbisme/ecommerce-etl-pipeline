@@ -52,3 +52,25 @@ Download the dataset available [here](https://www.kaggle.com/datasets/mkechinov/
 python3 pipeline.py
 ```
 
+## Data Successfully Loaded to PostgreSQL DB
+
+The cleaned data has been loaded into a PostgreSQL database container using SQLAlchemy.
+
+### Sample Table Preview
+
+After running the pipeline, the `ecommerce_events` table was successfully created and populated:
+
+```sql
+-- Query to count event types
+select event_type, count(*) total_cnt
+  from public.ecommerce_events
+ group by rollup(event_type)
+ order by event_type;
+
+ event_type |  total_cnt  
+------------+-----------
+ view       |     150121
+ cart       |       3302
+ purchase   |       3494
+ [null]     |     156917
+

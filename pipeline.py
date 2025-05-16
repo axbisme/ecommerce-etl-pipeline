@@ -6,7 +6,7 @@ from datetime import datetime
 import pandas as pd
 
 from etl.transform import clean_data
-# from etl.load import load_data_to_postgres
+from etl.load import load_data_to_db
 
 # --------- Configure Logging ----------
 logging.basicConfig(
@@ -19,7 +19,9 @@ logger = logging.getLogger(__name__)
 RAW_FILE_NAME = "2019-Oct"
 RAW_DATA_PATH = Path("data/raw/" + RAW_FILE_NAME + ".csv")
 CLEAN_DATA_DIR = Path("data/clean")
-CHUNKSIZE = 100_000
+CHUNKSIZE = 50_000
+POSTGRES_URL = "postgresql://etl_user:etl_pass@localhost:5432/ecommerce_etl"
+TABLE_NAME = "ecommerce_events"
 
 def run_etl_pipeline():
     logger.info("Starting chunked ETL pipeline")
@@ -28,7 +30,7 @@ def run_etl_pipeline():
 
     chunk_index = 0
     total_rows = 0
-    for chunk in pd.read_csv(RAW_DATA_PATH, chunksize=CHUNKSIZE, nrows=500000):
+    for chunk in pd.read_csv(RAW_DATA_PATH, chunksize=CHUNKSIZE, nrows=250000):
         logger.info(f"Processing chunk {chunk_index + 1}")
         try:
             clean_df = clean_data(chunk)
@@ -38,7 +40,10 @@ def run_etl_pipeline():
             clean_df.to_csv(output_path, index=False)
             logger.info(f"Saved cleaned chunk {chunk_index} with {len(clean_df)} rows")
 
-            # Optional: load_data_to_postgres(clean_df)
+            load_data_to_db(
+                df=clean_df, 
+                table_name=TABLE_NAME, 
+                connection_url=POSTGRES_URL)
 
             chunk_index += 1
         except Exception as e:
