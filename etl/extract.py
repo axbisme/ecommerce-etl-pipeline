@@ -1,4 +1,3 @@
-# extract.py
 import pandas as pd
 
 def extract_csv(filepath: str, nrows: int = None) -> pd.DataFrame:
