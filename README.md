@@ -20,6 +20,10 @@ ecommerce-etl-pipeline/
 │ ├── transform.py # Cleans and transforms raw data
 │ └── load.py # Loads clean data into PostgreSQL
 ├── sql/ # Store useful SQL scripts 
+├── tests/ # Test cases for ETL pipeline
+│ ├── test_extract.py # Test extraction
+│ ├── test_load.py # Test loading
+│ └── test_transform.py # Test clean and transform processes
 ├── docker-compose.yml
 ├── pipeline.py # Orchestrates ETL steps
 ├── requirements.txt
@@ -52,6 +56,12 @@ Download the dataset available [here](https://www.kaggle.com/datasets/mkechinov/
 
 ```bash
 python3 pipeline.py
+```
+
+## Optional: Run test cases for the pipeline
+
+```bash
+PYTHONPATH=. pytest
 ```
 
 ## Data Successfully Loaded to PostgreSQL DB
