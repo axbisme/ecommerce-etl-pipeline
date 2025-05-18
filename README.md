@@ -13,13 +13,16 @@ This project extracts, cleans, and transforms raw e-commerce clickstream data in
 ```bash
 ecommerce-etl-pipeline/
 ├── data/
-│ ├── raw/ # Raw input CSVs (ignored in Git)
-│ └── clean/ # Cleaned, chunked output CSVs (ignored in Git)
+│ ├── raw/ # Raw input CSVs *ignored in Git
+│ └── clean/ # Cleaned, chunked output CSVs *ignored in Git
 ├── etl/
 │ ├── extract.py # Handles CSV extraction
 │ ├── transform.py # Cleans and transforms raw data
 │ └── load.py # Loads clean data into PostgreSQL
 ├── sql/ # Store useful SQL scripts 
+│ ├── cart_to_purchase_conversion_rate.sql 
+│ ├── view_to_cart_conversion_rate.sql 
+│ └── view_to_purchase_conversion_rate.sql 
 ├── tests/ # Test cases for ETL pipeline
 │ ├── test_extract.py # Test extraction
 │ ├── test_load.py # Test loading
