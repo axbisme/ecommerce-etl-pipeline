@@ -30,7 +30,7 @@ def run_etl_pipeline():
 
     chunk_index = 0
     total_rows = 0
-    for chunk in pd.read_csv(RAW_DATA_PATH, chunksize=CHUNKSIZE, nrows=250000):
+    for chunk in pd.read_csv(RAW_DATA_PATH, chunksize=CHUNKSIZE, nrows=3000000):
         logger.info(f"Processing chunk {chunk_index + 1}")
         try:
             clean_df = clean_data(chunk)
